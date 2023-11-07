@@ -1,9 +1,3 @@
-;(use-modules (guix packages)
-;             (guix git-download)
-;             (guix build-system cmake)
-;             (guix licenses)
-;             (gnu packages algebra))
-
 (define-module (qpmad)
   #:use-module (guix licenses)
   #:use-module (guix packages)
