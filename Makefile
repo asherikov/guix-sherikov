@@ -23,3 +23,5 @@ chan_add:
     )\n\
     %default-channels\n\
 )" >> "${HOME}/.config/guix/channels.scm"
+
+# guix hash -r ./
