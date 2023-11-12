@@ -2,8 +2,7 @@
   #:use-module (guix licenses)
   #:use-module (guix packages)
   #:use-module (guix build-system cmake)
-  #:use-module (guix git-download)
-  #:use-module (gnu packages algebra))
+  #:use-module (guix git-download))
 
 (define-public cpput
     (package

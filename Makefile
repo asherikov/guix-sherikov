@@ -24,4 +24,19 @@ chan_add:
     %default-channels\n\
 )" >> "${HOME}/.config/guix/channels.scm"
 
+
+guix_purge:
+	sudo umount /gnu/store
+	systemctl | grep guix | grep -o "[[:graph:]]*.service" | xargs --no-run-if-empty -I {} sudo sh -c "systemctl stop {} && systemctl disable {}"
+	sudo find /etc -iname "*guix*" | xargs --no-run-if-empty -I {} sudo rm -Rf {}
+	sudo rm -rf /gnu
+	sudo rm -rf /var/guix
+	rm -rf ~/.profile/guix
+	rm -rf ~/.guix-profile
+
+guix_install:
+	wget https://git.savannah.gnu.org/cgit/guix.git/plain/etc/guix-install.sh
+	sudo sh guix-install.sh
+
 # guix hash -r ./
+
