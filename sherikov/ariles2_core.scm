@@ -1,4 +1,4 @@
-(define-module (ariles2_core)
+(define-module (sherikov ariles2_core)
   #:use-module (guix licenses)
   #:use-module (guix packages)
   #:use-module (guix build-system cmake)

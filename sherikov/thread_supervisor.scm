@@ -1,39 +1,37 @@
-(define-module (qpmad)
+(define-module (sherikov thread_supervisor)
   #:use-module (guix licenses)
   #:use-module (guix packages)
   #:use-module (guix build-system cmake)
-  #:use-module (guix git-download)
-  #:use-module (gnu packages algebra))
+  #:use-module (guix git-download))
 
-(define-public qpmad
+(define-public thread_supervisor
     (package
-        (name "qpmad")
-        (version "1.3.0")
+        (name "thread_supervisor")
+        (version "1.0.0")
         (source
             (origin
                 (method git-fetch)
                 (uri
                     (git-reference
-                        (url "https://github.com/asherikov/qpmad")
+                        (url "https://github.com/asherikov/thread_supervisor")
                         (commit version)
                     )
                 )
                 (file-name (git-file-name name version))
                 (sha256
-                    (base32 "0dbxaypr9qw8sglv4v01d45k2pp3wgjj3ak0n14bjgxzc4li2hfn")
+                    (base32 "1z05wnd5m6ibjnz4k7irfwg7768frig98yw49i10dsm1lqjcz2ya")
                 )
             )
         )
         (build-system cmake-build-system)
-        (synopsis
-            "Eigen-based Goldfarb-Idnani quadratic programming solver"
+        (synopsis 
+            "C++11 thread supervisor which conditionally restarts failed or finished threads"
         )
         (description synopsis)
-        (home-page "https://www.sherikov.net/qpmad/")
+        (home-page "https://github.com/asherikov/thread_supervisor")
         (license asl2.0)
-        (propagated-inputs (list eigen))
         (arguments `(#:tests? #false))
     )
 )
 
-qpmad
+thread_supervisor

@@ -1,7 +1,7 @@
-(define-module (ariles2_rapidjson)
+(define-module (sherikov ariles2_rapidjson)
   #:use-module (guix packages)
   #:use-module (gnu packages web)
-  #:use-module (ariles2_core))
+  #:use-module (sherikov ariles2_core))
 
 (define-public ariles2_rapidjson
     (package

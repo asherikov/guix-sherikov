@@ -1,22 +1,21 @@
-(define-module (ariles2_pugixml)
+(define-module (sherikov ariles2_octave)
   #:use-module (guix packages)
-  #:use-module (gnu packages xml)
-  #:use-module (ariles2_core))
+  #:use-module (sherikov ariles2_core))
 
-(define-public ariles2_pugixml
+(define-public ariles2_octave
     (package
         (inherit ariles2_core)
-        (name "ariles2_pugixml")
-        (propagated-inputs (list ariles2_core pugixml))
+        (name "ariles2_octave")
+        (propagated-inputs (list ariles2_core))
         (arguments
             `(  #:tests? #false
                 #:configure-flags '("-DARILES_VISITORS_DEFAULT_MODE=OFF"
                                     "-DARILES_CCACHE=OFF"
                                     "-DARILES_ENABLE_CORE=OFF"
-                                    "-DARILES_VISITOR_pugixml=ON")
+                                    "-DARILES_VISITOR_octave=ON")
             )
         )
     )
 )
 
-ariles2_pugixml
+ariles2_octave

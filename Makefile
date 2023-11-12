@@ -2,10 +2,10 @@ PKG?=qpmad
 APT_INSTALL?=env DEBIAN_FRONTEND=noninteractive apt --yes --no-install-recommends install
 
 chan_install_all:
-	ls *.scm | sed 's/\.scm//' | xargs -I {} ${MAKE} chan_install PKG={}
+	ls sherikov | sed 's/\.scm//' | xargs -I {} ${MAKE} chan_install PKG={}
 
 lint_all:
-	ls *.scm | sed 's/\.scm//' | xargs -I {} ${MAKE} lint PKG={}
+	ls sherikov | sed 's/\.scm//' | xargs -I {} ${MAKE} lint PKG={}
 
 pkg_install:
 	guix package --install-from-file=${PKG}.scm
@@ -14,7 +14,11 @@ chan_install:
 	guix install --load-path=./ ${PKG}
 
 lint:
-	guix lint -x name,cve,formatting --load-path=./ ${PKG} | grep ${PKG} | tee lint.err
+	# name -- requires '-' instead of '_', whichs is a pain to maintain
+	# cve -- useless
+	# formatting -- I prefer my own style
+	# source -- ??? may help with "'https://archive.softwareheritage.org/api/1/snapshot/.../' returned 500"
+	guix lint -x name,cve,formatting,source --load-path=./ ${PKG} | grep ${PKG} | tee lint.err
 	test ! -s 'lint.err'
 	rm 'lint.err'
 
@@ -50,6 +54,10 @@ guix_install:
 guix_install_noninteractive:
 	wget https://git.savannah.gnu.org/cgit/guix.git/plain/etc/guix-install.sh
 	yes | sudo sh ./guix-install.sh
+
+guix_update:
+	guix pull
+	echo 'export PATH="$${HOME}/.config/guix/current/bin:$${PATH}"' >> ~/.bashrc
 
 # guix hash -r ./
 

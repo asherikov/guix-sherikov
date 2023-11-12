@@ -1,37 +1,41 @@
-(define-module (thread_supervisor)
+(define-module (sherikov cpput)
   #:use-module (guix licenses)
   #:use-module (guix packages)
   #:use-module (guix build-system cmake)
   #:use-module (guix git-download))
 
-(define-public thread_supervisor
+(define-public cpput
     (package
-        (name "thread_supervisor")
-        (version "1.0.0")
+        (name "cpput")
+        (version "1.2.0")
         (source
             (origin
                 (method git-fetch)
                 (uri
                     (git-reference
-                        (url "https://github.com/asherikov/thread_supervisor")
+                        (url "https://github.com/asherikov/cpput")
                         (commit version)
                     )
                 )
                 (file-name (git-file-name name version))
                 (sha256
-                    (base32 "1z05wnd5m6ibjnz4k7irfwg7768frig98yw49i10dsm1lqjcz2ya")
+                    (base32 "1sv125hmiy949ab990wz31vccp7rry8yh98h46ikwzfiwx9vwh8p")
                 )
             )
         )
         (build-system cmake-build-system)
-        (synopsis 
-            "C++11 thread supervisor which conditionally restarts failed or finished threads"
+        (synopsis
+            "C++ utilities from various sources"
         )
         (description synopsis)
-        (home-page "https://github.com/asherikov/thread_supervisor")
+        (home-page "https://github.com/asherikov/cpput")
         (license asl2.0)
-        (arguments `(#:tests? #false))
+        (arguments 
+            `(  #:tests? #false
+                #:configure-flags '("-DCPPUT_BUILD_TESTS=OFF")
+            )
+        )
     )
 )
 
-thread_supervisor
+cpput
