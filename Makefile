@@ -1,5 +1,11 @@
 PKG?=qpmad
 
+chan_install_all:
+	ls *.scm | sed 's/\.scm//' | xargs -I {} ${MAKE} chan_install PKG={}
+
+lint_all:
+	ls *.scm | sed 's/\.scm//' | xargs -I {} ${MAKE} lint PKG={}
+
 pkg_install:
 	guix package --install-from-file=${PKG}.scm
 
