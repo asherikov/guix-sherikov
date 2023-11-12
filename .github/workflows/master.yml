@@ -1,5 +1,9 @@
-on: [push, pull_request]
-
+on:
+    push:
+        branches:
+            - '**'
+    pull_request:
+        types: [opened, reopened]
 
 jobs:
     jammy_test:
@@ -7,6 +11,6 @@ jobs:
 
         steps:
             - uses: actions/checkout@v3
-            - run: make guix_install
+            - run: make guix_install_noninteractive
             - run: make lint_all
-            - run: make install_all
+            - run: make chan_install_all

@@ -24,8 +24,8 @@
             )
         )
         (build-system cmake-build-system)
-        (synopsis
-            "Simple C++11 thread supervisor which automatically restarts failed or finished threads."
+        (synopsis 
+            "C++11 thread supervisor which conditionally restarts failed or finished threads"
         )
         (description synopsis)
         (home-page "https://github.com/asherikov/thread_supervisor")

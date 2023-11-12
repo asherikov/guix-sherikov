@@ -1,4 +1,5 @@
 PKG?=qpmad
+APT_INSTALL?=env DEBIAN_FRONTEND=noninteractive apt --yes --no-install-recommends install
 
 chan_install_all:
 	ls *.scm | sed 's/\.scm//' | xargs -I {} ${MAKE} chan_install PKG={}
@@ -13,7 +14,9 @@ chan_install:
 	guix install --load-path=./ ${PKG}
 
 lint:
-	guix lint -x formatting --load-path=./ ${PKG}
+	guix lint -x name,cve,formatting --load-path=./ ${PKG} | grep ${PKG} | tee lint.err
+	test ! -s 'lint.err'
+	rm 'lint.err'
 
 show:
 	guix show --load-path=./ ${PKG}
@@ -32,8 +35,8 @@ chan_add:
 
 
 guix_purge:
-	sudo umount /gnu/store
 	systemctl | grep guix | grep -o "[[:graph:]]*.service" | xargs --no-run-if-empty -I {} sudo sh -c "systemctl stop {} && systemctl disable {}"
+	sudo umount /gnu/store || true
 	sudo find /etc -iname "*guix*" | xargs --no-run-if-empty -I {} sudo rm -Rf {}
 	sudo rm -rf /gnu
 	sudo rm -rf /var/guix
@@ -43,6 +46,10 @@ guix_purge:
 guix_install:
 	wget https://git.savannah.gnu.org/cgit/guix.git/plain/etc/guix-install.sh
 	sudo sh guix-install.sh
+
+guix_install_noninteractive:
+	wget https://git.savannah.gnu.org/cgit/guix.git/plain/etc/guix-install.sh
+	yes | sudo sh ./guix-install.sh
 
 # guix hash -r ./
 

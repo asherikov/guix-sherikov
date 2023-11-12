@@ -27,7 +27,7 @@
         )
         (build-system cmake-build-system)
         (synopsis
-            "C++ reflection library with focus on serialization/configuration (YAML, JSON, XML, etc)"
+            "C++ reflection library with focus on serialization/configuration"
         )
         (description synopsis)
         (home-page "https://www.sherikov.net/ariles/2/")
