@@ -1,22 +1,21 @@
-(define-module (sherikov ariles2_rapidjson)
+(define-module (sherikov packages ariles2_octave)
   #:use-module (guix packages)
-  #:use-module (gnu packages web)
-  #:use-module (sherikov ariles2_core))
+  #:use-module (sherikov packages ariles2_core))
 
-(define-public ariles2_rapidjson
+(define-public ariles2_octave
     (package
         (inherit ariles2_core)
-        (name "ariles2_rapidjson")
-        (propagated-inputs (list ariles2_core rapidjson))
+        (name "ariles2_octave")
+        (propagated-inputs (list ariles2_core))
         (arguments
             `(  #:tests? #false
                 #:configure-flags '("-DARILES_VISITORS_DEFAULT_MODE=OFF"
                                     "-DARILES_CCACHE=OFF"
                                     "-DARILES_ENABLE_CORE=OFF"
-                                    "-DARILES_VISITOR_rapidjson=ON")
+                                    "-DARILES_VISITOR_octave=ON")
             )
         )
     )
 )
 
-ariles2_rapidjson
+ariles2_octave

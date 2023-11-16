@@ -1,22 +1,21 @@
-(define-module (sherikov ariles2_jsonnet)
+(define-module (sherikov packages ariles2_graphviz)
   #:use-module (guix packages)
-  #:use-module (gnu packages cpp)
-  #:use-module (sherikov ariles2_core))
+  #:use-module (sherikov packages ariles2_core))
 
-(define-public ariles2_jsonnet
+(define-public ariles2_graphviz
     (package
         (inherit ariles2_core)
-        (name "ariles2_jsonnet")
-        (propagated-inputs (list ariles2_core jsonnet))
+        (name "ariles2_graphviz")
+        (propagated-inputs (list ariles2_core))
         (arguments
             `(  #:tests? #false
                 #:configure-flags '("-DARILES_VISITORS_DEFAULT_MODE=OFF"
                                     "-DARILES_CCACHE=OFF"
                                     "-DARILES_ENABLE_CORE=OFF"
-                                    "-DARILES_VISITOR_jsonnet=ON")
+                                    "-DARILES_VISITOR_graphviz=ON")
             )
         )
     )
 )
 
-ariles2_jsonnet
+ariles2_graphviz

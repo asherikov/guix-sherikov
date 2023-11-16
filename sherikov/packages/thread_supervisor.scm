@@ -1,4 +1,4 @@
-(define-module (sherikov thread_supervisor)
+(define-module (sherikov packages thread_supervisor)
   #:use-module (guix licenses)
   #:use-module (guix packages)
   #:use-module (guix build-system cmake)

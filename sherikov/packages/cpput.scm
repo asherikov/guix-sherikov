@@ -1,39 +1,41 @@
-(define-module (sherikov qpmad)
+(define-module (sherikov packages cpput)
   #:use-module (guix licenses)
   #:use-module (guix packages)
   #:use-module (guix build-system cmake)
-  #:use-module (guix git-download)
-  #:use-module (gnu packages algebra))
+  #:use-module (guix git-download))
 
-(define-public qpmad
+(define-public cpput
     (package
-        (name "qpmad")
-        (version "1.3.0")
+        (name "cpput")
+        (version "1.2.0")
         (source
             (origin
                 (method git-fetch)
                 (uri
                     (git-reference
-                        (url "https://github.com/asherikov/qpmad")
+                        (url "https://github.com/asherikov/cpput")
                         (commit version)
                     )
                 )
                 (file-name (git-file-name name version))
                 (sha256
-                    (base32 "0dbxaypr9qw8sglv4v01d45k2pp3wgjj3ak0n14bjgxzc4li2hfn")
+                    (base32 "1sv125hmiy949ab990wz31vccp7rry8yh98h46ikwzfiwx9vwh8p")
                 )
             )
         )
         (build-system cmake-build-system)
         (synopsis
-            "Eigen-based Goldfarb-Idnani quadratic programming solver"
+            "C++ utilities from various sources"
         )
         (description synopsis)
-        (home-page "https://www.sherikov.net/qpmad/")
+        (home-page "https://github.com/asherikov/cpput")
         (license asl2.0)
-        (propagated-inputs (list eigen))
-        (arguments `(#:tests? #false))
+        (arguments 
+            `(  #:tests? #false
+                #:configure-flags '("-DCPPUT_BUILD_TESTS=OFF")
+            )
+        )
     )
 )
 
-qpmad
+cpput

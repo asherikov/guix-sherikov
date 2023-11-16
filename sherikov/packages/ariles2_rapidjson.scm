@@ -1,22 +1,22 @@
-(define-module (sherikov ariles2_pugixml)
+(define-module (sherikov packages ariles2_rapidjson)
   #:use-module (guix packages)
-  #:use-module (gnu packages xml)
-  #:use-module (sherikov ariles2_core))
+  #:use-module (gnu packages web)
+  #:use-module (sherikov packages ariles2_core))
 
-(define-public ariles2_pugixml
+(define-public ariles2_rapidjson
     (package
         (inherit ariles2_core)
-        (name "ariles2_pugixml")
-        (propagated-inputs (list ariles2_core pugixml))
+        (name "ariles2_rapidjson")
+        (propagated-inputs (list ariles2_core rapidjson))
         (arguments
             `(  #:tests? #false
                 #:configure-flags '("-DARILES_VISITORS_DEFAULT_MODE=OFF"
                                     "-DARILES_CCACHE=OFF"
                                     "-DARILES_ENABLE_CORE=OFF"
-                                    "-DARILES_VISITOR_pugixml=ON")
+                                    "-DARILES_VISITOR_rapidjson=ON")
             )
         )
     )
 )
 
-ariles2_pugixml
+ariles2_rapidjson

@@ -11,7 +11,7 @@ pkg_install:
 	guix package --install-from-file=${PKG}.scm
 
 chan_install:
-	guix install --load-path=./ ${PKG}
+	guix install --keep-failed --verbosity=20 --load-path=./ ${PKG}
 
 lint:
 	# name -- requires '-' instead of '_', whichs is a pain to maintain
