@@ -2,10 +2,10 @@ PKG?=qpmad
 APT_INSTALL?=env DEBIAN_FRONTEND=noninteractive apt --yes --no-install-recommends install
 
 chan_install_all:
-	ls sherikov | sed 's/\.scm//' | xargs -I {} ${MAKE} chan_install PKG={}
+	ls sherikov/release | sed 's/\.scm//' | xargs -I {} ${MAKE} chan_install PKG={}
 
 lint_all:
-	ls sherikov | sed 's/\.scm//' | xargs -I {} ${MAKE} lint PKG={}
+	ls sherikov/release | sed 's/\.scm//' | xargs -I {} ${MAKE} lint PKG={}
 
 pkg_install:
 	guix package --install-from-file=${PKG}.scm
@@ -17,7 +17,7 @@ lint:
 	# name -- requires '-' instead of '_', whichs is a pain to maintain
 	# cve -- useless
 	# formatting -- I prefer my own style
-	# source -- ??? may help with "'https://archive.softwareheritage.org/api/1/snapshot/.../' returned 500"
+	# archival -- may help with "'https://archive.softwareheritage.org/api/1/snapshot/.../' returned 500"
 	guix lint -x name,cve,formatting,source --load-path=./ ${PKG} | grep ${PKG} | tee lint.err
 	test ! -s 'lint.err'
 	rm 'lint.err'

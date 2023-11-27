@@ -1,5 +1,4 @@
-(define-module (sherikov packages qpmad)
-    #:use-module (sherikov helpers git)
+(define-module (sherikov release qpmad)
     #:use-module (guix licenses)
     #:use-module (guix packages)
     #:use-module (guix build-system cmake)
@@ -37,19 +36,6 @@
         (license asl2.0)
         (propagated-inputs (list eigen))
         (arguments `(#:tests? #false))
-    )
-)
-
-(define-public qpmad-devel
-    (package
-        (inherit qpmad)
-        (name "qpmad-devel")
-        (version (sherikov-git-describe "./src/qpmad"))
-        (source
-            (local-file "../../src/qpmad"
-                #:recursive? #t
-            )
-        )
     )
 )
 

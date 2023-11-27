@@ -1,8 +1,9 @@
-(define-module (sherikov packages thread_supervisor)
-  #:use-module (guix licenses)
-  #:use-module (guix packages)
-  #:use-module (guix build-system cmake)
-  #:use-module (guix git-download))
+(define-module (sherikov release thread_supervisor)
+    #:use-module (guix licenses)
+    #:use-module (guix packages)
+    #:use-module (guix build-system cmake)
+    #:use-module (guix git-download)
+)
 
 (define-public thread_supervisor
     (package
@@ -24,7 +25,7 @@
             )
         )
         (build-system cmake-build-system)
-        (synopsis 
+        (synopsis
             "C++11 thread supervisor which conditionally restarts failed or finished threads"
         )
         (description synopsis)

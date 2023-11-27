@@ -1,15 +1,17 @@
-(define-module (sherikov packages ariles2_core)
-  #:use-module (guix licenses)
-  #:use-module (guix packages)
-  #:use-module (guix build-system cmake)
-  #:use-module (guix git-download)
-  #:use-module (gnu packages algebra)
-  #:use-module (gnu packages boost))
+(define-module (sherikov release ariles2_core)
+    #:use-module (guix licenses)
+    #:use-module (guix packages)
+    #:use-module (guix build-system cmake)
+    #:use-module (guix git-download)
+    #:use-module (guix gexp)
+    #:use-module (gnu packages algebra)
+    #:use-module (gnu packages boost)
+)
 
 (define-public ariles2_core
     (package
         (name "ariles2_core")
-        (version "2.0.3")
+        (version "2.1.0")
         (source
             (origin
                 (method git-fetch)
@@ -21,7 +23,7 @@
                 )
                 (file-name (git-file-name name version))
                 (sha256
-                    (base32 "1kmhlmf4g0nxa52z9myywa0mcy3j47ynh6fgjiphw43szzcxr4m1")
+                    (base32 "0c9y9f7hizfy7vrh3l4vga7g56cppxjxyliqyy8gffrwnpxn1bas")
                 )
             )
         )
@@ -36,7 +38,9 @@
         (arguments
             `(  #:tests? #false
                 #:configure-flags '("-DARILES_VISITORS_DEFAULT_MODE=OFF"
+                                    "-DARILES_CPP_STANDARD=14"
                                     "-DARILES_CCACHE=OFF"
+                                    "-DARILES_BUILD_REGRESSION_TESTS=OFF"
                                     "-DARILES_ENABLE_CORE=ON")
             )
         )

@@ -1,5 +1,5 @@
 (channel
     (version 0)
     (url "https://github.com/asherikov/guix-sherikov.git")
-    (directory "sherikov")
+;    (directory "sherikov")
 )

@@ -1,8 +1,9 @@
-(define-module (sherikov packages cpput)
-  #:use-module (guix licenses)
-  #:use-module (guix packages)
-  #:use-module (guix build-system cmake)
-  #:use-module (guix git-download))
+(define-module (sherikov release cpput)
+    #:use-module (guix licenses)
+    #:use-module (guix packages)
+    #:use-module (guix build-system cmake)
+    #:use-module (guix git-download)
+)
 
 (define-public cpput
     (package
@@ -30,7 +31,7 @@
         (description synopsis)
         (home-page "https://github.com/asherikov/cpput")
         (license asl2.0)
-        (arguments 
+        (arguments
             `(  #:tests? #false
                 #:configure-flags '("-DCPPUT_BUILD_TESTS=OFF")
             )
